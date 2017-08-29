@@ -11,11 +11,16 @@ public class QueryVo {
     //客户级别
     private String custLevel;
 
-    //当前页有几个
+    //当前第几页
     private Integer page=1;
 
     //数据库从哪一条开始查
     private Integer start;
+
+    //每页条数
+    private Integer rows=10;
+
+
 
     public Integer getStart() {
         return start;
@@ -24,10 +29,6 @@ public class QueryVo {
     public void setStart(Integer start) {
         this.start = start;
     }
-
-    //每页条数
-    private Integer size=10;
-
 
     public String getCustName() {
         return custName;
@@ -69,11 +70,11 @@ public class QueryVo {
         this.page = page;
     }
 
-    public Integer getSize() {
-        return size;
+    public Integer getRows() {
+        return rows;
     }
 
-    public void setSize(Integer size) {
-        this.size = size;
+    public void setRows(Integer rows) {
+        this.rows = rows;
     }
 }

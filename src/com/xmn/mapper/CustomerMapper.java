@@ -9,8 +9,8 @@ import java.util.List;
 @Repository
 public interface CustomerMapper {
 
-    //总条数
-    public Integer queryCustomerCountByQueryVo(QueryVo queryVo);
-    //结果集
-    public List<Customer> selectCustomerListByQueryVo(QueryVo queryVo);
+    //查总条数
+   public int queryCountByQueryVo(QueryVo queryVo);
+    //查结果集
+   public List<Customer> queryCustomerListByQueryVo(QueryVo queryVo);
 }

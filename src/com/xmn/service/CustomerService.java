@@ -7,9 +7,10 @@ import com.xmn.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+
 public interface CustomerService {
 
-    public Page<Customer> selectPageByQueryVo(QueryVo queryVo);
+     Page<Customer> queryPageByQueryVo(QueryVo queryVo);
+
 
 }

@@ -1,4 +1,4 @@
-package com.xmn.service.Impl;
+package com.xmn.service;
 
 
 import com.xmn.bean.BaseDict;

@@ -2,20 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xmn.mapper.CustomerMapper">
 
-    <sql id="selectCustomerListWhere">
+    <!--<sql id="selectCustomerListWhere">-->
+        <!--<where>-->
+            <!--<if test="cust_name!=null">-->
+                <!--cust_name LIKE "%#{custName}%"-->
+            <!--</if>-->
+            <!--<if test="cust_source!=null">-->
+                <!--AND cust_source=#{custSource}-->
+            <!--</if>-->
+            <!--<if test="cust_industry!=null">-->
+                <!--AND cust_industry=#{custIndustry}-->
+            <!--</if>-->
+            <!--<if test="cust_level!=null">-->
+                <!--AND cust_level=#{custLevel}-->
+            <!--</if>-->
+
+        <!--</where>-->
+    <!--</sql>-->
+    <sql id="customerQueryVo">
         <where>
-            <if test="cust_name!=null">
-                cust_name LIKE "%"#{cust_name}"%"
+            <if test="custName!=null and custName!=''">
+                AND a.cust_name LIKE '%${custName}%'
             </if>
-            <if test="cust_source!=null">
-                AND cust_source=#{cust_source}
+            <if test="custSource != null and custSource != ''">
+                AND a.cust_source = #{custSource}
             </if>
-            <if test="cust_industry!=null">
-                AND cust_industry=#{cust_industry}
+            <if test="custIndustry != null and custIndustry != ''">
+                AND a.cust_industry = #{custIndustry}
             </if>
-            <if test="cust_level!=null">
-                AND cust_level=#{cust_level}
+            <if test="custLevel != null and custLevel != ''">
+                AND a.cust_level = #{custLevel}
             </if>
+
 
         </where>
     </sql>
@@ -23,16 +41,16 @@
     <!--//总条数-->
     <!--public Integer customerCountByQueryVo(QueryVo queryVo);-->
 
-    <select id="queryCustomerCountByQueryVo" parameterType="QueryVo" resultType="Integer">
-        SELECT COUNT (*) FROM customer
-        <include refid="selectCustomerListWhere"/>
+    <select id="queryCountByQueryVo" parameterType="queryVo" resultType="int">
+        SELECT COUNT(1) FROM customer a
+        <include refid="customerQueryVo"/>
     </select>
 
     <!--//结果集-->
     <!--public List<Customer> selectCustomerListByQueryVo(QueryVo queryVo);-->
 
-    <select id="selectCustomerListByQueryVo" parameterType="QueryVo" resultType="customer">
-        	  SELECT
+    <select id="queryCustomerListByQueryVo" parameterType="QueryVo" resultType="customer">
+      SELECT
 		a.cust_id,
 		a.cust_name,
 		a.cust_user_id,
@@ -52,11 +70,12 @@
 		LEFT JOIN base_dict c ON a.cust_industry = c.dict_id
 		LEFT JOIN base_dict d ON a.cust_level = d.dict_id
 
-      <include refid="selectCustomerListWhere"/>
+      <include refid="customerQueryVo"/>
 
-        <if test="start!=null and size!=null">
-            limit #{start},#{size}
+        <if test="start!=null">
+            limit #{start},#{rows}
         </if>
+
     </select>
 
 </mapper>
