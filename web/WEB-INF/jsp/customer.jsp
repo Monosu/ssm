@@ -276,7 +276,7 @@
 										<td>${row.cust_mobile}</td>
 										<td>
 											<a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#customerEditDialog" onclick="editCustomer(${row.cust_id})">修改</a>
-											<a href="#" class="btn btn-danger btn-xs" onclick="deleteCustomer(${row.cust_id})">删除</a>
+											<a href="javascript:void (0)" class="btn btn-danger btn-xs" onclick="deleteCustomer(${row.cust_id})">删除</a>
 										</td>
 									</tr>
 								</c:forEach>
@@ -436,8 +436,12 @@
 		function deleteCustomer(id) {
 			if(confirm('确实要删除该客户吗?')) {
 				$.post("${pageContext.request.contextPath}/customer/delete.action",{"id":id},function(data){
-					alert("客户删除更新成功！");
-					window.location.reload();
+
+				    if (data.valueOf("ok")){
+                        alert("客户删除更新成功！");
+                        window.location.reload();
+					}
+
 				});
 			}
 		}

@@ -36,4 +36,9 @@ public class CustomerServiceImpl implements CustomerService {
 
         return page;
     }
+
+    @Override
+    public void deleteCustomerById(Long id) {
+        customerMapper.deleteCustomerById(id);
+    }
 }

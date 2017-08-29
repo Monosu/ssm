@@ -12,5 +12,5 @@ public interface CustomerService {
 
      Page<Customer> queryPageByQueryVo(QueryVo queryVo);
 
-
+     void deleteCustomerById(Long id);
 }

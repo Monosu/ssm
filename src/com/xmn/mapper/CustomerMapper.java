@@ -10,7 +10,10 @@ import java.util.List;
 public interface CustomerMapper {
 
     //查总条数
-   public int queryCountByQueryVo(QueryVo queryVo);
+    int queryCountByQueryVo(QueryVo queryVo);
     //查结果集
-   public List<Customer> queryCustomerListByQueryVo(QueryVo queryVo);
+    List<Customer> queryCustomerListByQueryVo(QueryVo queryVo);
+
+   //删除某条数据
+    void deleteCustomerById(Long id);
 }

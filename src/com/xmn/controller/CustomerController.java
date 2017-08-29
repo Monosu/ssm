@@ -68,5 +68,11 @@ public class CustomerController {
         return "customer";
     }
 
+    @RequestMapping("delete")
+    public String deleteCustomerById(Long id){
+        customerService.deleteCustomerById(id);
+        return "ok";
+    }
+
 
 }
