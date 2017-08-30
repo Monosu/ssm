@@ -109,5 +109,7 @@ public class Customer implements Serializable {
 	public void setCust_createtime(Date cust_createtime) {
 		this.cust_createtime = cust_createtime;
 	}
+
+
 	
 }

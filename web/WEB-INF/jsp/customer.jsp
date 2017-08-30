@@ -276,7 +276,7 @@
 										<td>${row.cust_mobile}</td>
 										<td>
 											<a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#customerEditDialog" onclick="editCustomer(${row.cust_id})">修改</a>
-											<a href="javascript:void (0)" class="btn btn-danger btn-xs" onclick="deleteCustomer(${row.cust_id})">删除</a>
+											<a href="javascript:void (0);" class="btn btn-danger btn-xs" onclick="deleteCustomer(${row.cust_id})">删除</a>
 										</td>
 									</tr>
 								</c:forEach>
@@ -412,6 +412,7 @@
 				url:"${pageContext.request.contextPath}/customer/edit.action",
 				data:{"id":id},
 				success:function(data) {
+
 					$("#edit_cust_id").val(data.cust_id);
 					$("#edit_customerName").val(data.cust_name);
 					$("#edit_customerFrom").val(data.cust_source);
@@ -423,7 +424,10 @@
 					$("#edit_zipcode").val(data.cust_zipcode);
 					$("#edit_address").val(data.cust_address);
 					
-				}
+				},
+				dataType:"json"
+
+
 			});
 		}
 		function updateCustomer() {
@@ -437,10 +441,10 @@
 			if(confirm('确实要删除该客户吗?')) {
 				$.post("${pageContext.request.contextPath}/customer/delete.action",{"id":id},function(data){
 
-				    if (data.valueOf("ok")){
-                        alert("客户删除更新成功！");
+
+//                        alert("客户删除更新成功！");
                         window.location.reload();
-					}
+
 
 				});
 			}

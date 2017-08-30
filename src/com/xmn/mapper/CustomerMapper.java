@@ -16,4 +16,10 @@ public interface CustomerMapper {
 
    //删除某条数据
     void deleteCustomerById(Long id);
+
+    //查询
+    Customer queryCustomerById(Long id);
+
+    //修改某条数据
+    void updateCustomerById(Long id);
 }

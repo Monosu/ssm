@@ -83,4 +83,12 @@
         DELETE FROM customer WHERE cust_id=#{cust_id}
     </select>
 
+    <select id="updateCustomerById" parameterType="long">
+
+    </select>
+
+    <select id="queryCustomerById" parameterType="long" resultType="customer">
+        SELECT *FROM customer WHERE cust_id=#{id}
+    </select>
+
 </mapper>
